@@ -7,5 +7,5 @@ import (
 
 type AuthService interface {
 	Login(loginRequest domain.LoginRequest) (*domain.LoginResponse, *errs.AppError)
-	// Verify(jwt string) *error
+	Verify(urlParams map[string]string) (bool, *errs.AppError)
 }

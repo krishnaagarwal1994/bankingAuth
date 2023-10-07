@@ -15,10 +15,12 @@ func Start() {
 
 	dbClient := getSQLClient()
 	authRepository := domain.NewAuthRepository(dbClient)
-	authService := service.NewAuthService(authRepository)
+	rolePermissions := domain.GetRolePermissions()
+	authService := service.NewAuthService(authRepository, rolePermissions)
 	authHandler := AuthHandler{service: authService}
 
 	router.HandleFunc("/login", authHandler.Login).Methods(http.MethodPost)
+	router.HandleFunc("/auth/verify", authHandler.Verify).Methods(http.MethodGet)
 	http.ListenAndServe("localhost:8081", router)
 }
 

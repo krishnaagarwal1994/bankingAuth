@@ -37,3 +37,10 @@ func NewInternalServerError(message string) *AppError {
 		Code:    http.StatusInternalServerError,
 	}
 }
+
+func NewForbiddenError(message string) *AppError {
+	return &AppError{
+		Message: message,
+		Code:    http.StatusForbidden,
+	}
+}
