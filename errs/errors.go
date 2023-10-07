@@ -30,3 +30,10 @@ func NewBadRequest(message string) *AppError {
 		Message: message,
 	}
 }
+
+func NewInternalServerError(message string) *AppError {
+	return &AppError{
+		Message: message,
+		Code:    http.StatusInternalServerError,
+	}
+}
